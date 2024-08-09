@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: promotional-task-8-deployment
+  labels:
+    app: promotional-task-8
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: promotional-task-8
+  template:
+    metadata:
+      labels:
+        app: promotional-task-8
+    spec:
+      containers:
+      - name: promotional-task-8
+        image: codesmiles/promotional-task-8:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
