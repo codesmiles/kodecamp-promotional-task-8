@@ -1,0 +1,6 @@
+.minikube
+.terraform
+terraform.tfstate
+terraform.tfstate.backup
+AWSCLIV2.pkg
+.terraform.lock.hcl

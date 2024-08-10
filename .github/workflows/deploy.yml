@@ -1,0 +1,35 @@
+name: Deploy to Minikube on EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Install kubectl
+      run: |
+        curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        chmod +x kubectl
+        sudo mv kubectl /usr/local/bin/
+
+    - name: SSH into EC2 and deploy
+      run: |
+        ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_PUBLIC_IP }} "
+        cd /home/ec2-user &&
+        docker build -t promotional-task-8 ./ &&
+        docker tag promotional-task-8:latest codesmiles/promotional-task-8:latest &&
+        docker push codesmiles/promotional-task-8:latest &&
+        kubectl apply -f kube/deployment.yaml &&
+        kubectl apply -f kube/service.yaml
+        "
