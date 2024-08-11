@@ -34,13 +34,11 @@ resource "aws_instance" "minikube" {
       "chmod +x kubectl",
       "sudo mv kubectl /usr/local/bin/"
     ]
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = file("~/.ssh/promotional-task-key-pair.pem")
+      host        = self.public_ip
+    }
   }
-
-  connection {
-    type        = "ssh"
-    user        = "ec2-user"
-    private_key = file("~/.ssh/promotional-task-key-pair.pem")
-    host        = self.public_ip
-  }
-
 }
