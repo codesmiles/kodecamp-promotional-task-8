@@ -42,19 +42,19 @@ est
     - [link to kube service yaml](/kube/kube-service.yaml)
 - Step 2: Set Up GitHub Actions
   - Create a GitHub Actions Workflow:
-  - In your repository, create a .github/workflows directory.
-  - Create a YAML file (e.g., deploy.yml) inside this directory with the required configurations.
-Step 3: Set Up Terraform for EC2 and Minikube
-Create Terraform Module:
-Create terraform modules for your EC2, VPC, and any other resources you would like to use (taking considerations of the cost)
-Initialize and Apply Terraform Configuration:
-Create root modules
-Run the appropriate Terraform commands in your terminal to create an EC2 instance with Minikube running on it.
-Step 4: Access the Minikube Cluster
-SSH into EC2 Instance:
-SSH into the created EC2 instance using the public IP output from Terraform.
-Configure kubectl:
-Inside the EC2 instance, configure kubectl to use the Minikube cluster.
-Step 5: Automate Deployment with GitHub Actions
-Update GitHub Actions Workflow:
-Update the GitHub Actions workflow to deploy to the Minikube cluster on the EC2 instance. Ensure the Minikube instance's IP and SSH keys are securely managed.
+    - In your repository, create a .github/workflows directory.
+    - Create a YAML file (e.g., deploy.yml) inside this directory with the required configurations.
+- Step 3: Set Up Terraform for EC2 and Minikube
+  - Create Terraform Module:
+    - Create terraform modules for your EC2, VPC, and any other resources you would like to use (taking considerations of the cost)
+    - Initialize and Apply Terraform Configuration:
+    - Create root modules
+    - Run the appropriate Terraform commands in your terminal to create an EC2 instance with Minikube running on it.
+- Step 4: Access the Minikube Cluster
+  - SSH into EC2 Instance:
+    - SSH into the created EC2 instance using the public IP output from Terraform.
+    - Configure kubectl:
+    - Inside the EC2 instance, configure kubectl to use the Minikube cluster.
+- Step 5: Automate Deployment with GitHub Actions
+  - Update GitHub Actions Workflow:
+    - Update the GitHub Actions workflow to deploy to the Minikube cluster on the EC2 instance. Ensure the Minikube instance's IP and SSH keys are securely managed.
