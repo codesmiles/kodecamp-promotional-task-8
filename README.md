@@ -29,13 +29,11 @@ est
   - Add Your Application Code:
   - Add your application code to the repository.
 [LINK TO THE REPOSITORY](https://github.com/codesmiles/kodecamp-promotional-task-8)
-
 - Ensure you have a Dockerfile for your application to containerize it
   [Link to Dockerfile](/Dockerfile)
 - Push image to Docker image registry
   - docker image name  -> codesmiles/promotional-task-8:latest
   - docker hub link -> <https://hub.docker.com/repository/docker/codesmiles/promotional-task-8/general>
-
 - Create Kubernetes Manifests:
   - Add the necessary Kubernetes manifests (e.g., deployment.yaml, service.yaml) to a k8s directory in your repository.
     - [Link to Kube deployment](/kube/kube-deployment.yaml)
@@ -44,12 +42,15 @@ est
   - Create a GitHub Actions Workflow:
     - In your repository, create a .github/workflows directory.
     - Create a YAML file (e.g., deploy.yml) inside this directory with the required configurations.
+    [Click Here To access the file](.github/workflows/deploy.yml)
 - Step 3: Set Up Terraform for EC2 and Minikube
   - Create Terraform Module:
     - Create terraform modules for your EC2, VPC, and any other resources you would like to use (taking considerations of the cost)
     - Initialize and Apply Terraform Configuration:
     - Create root modules
     - Run the appropriate Terraform commands in your terminal to create an EC2 instance with Minikube running on it.
+    [Click here to access the terraform file](/terraform/minikube)
+    ![Image to the teraform plan](/assets/terraform%20plan.png)
 - Step 4: Access the Minikube Cluster
   - SSH into EC2 Instance:
     - SSH into the created EC2 instance using the public IP output from Terraform.
