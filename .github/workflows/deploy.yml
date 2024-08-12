@@ -19,7 +19,7 @@ jobs:
 
       - name: Install kubectl
         run: |
-          # Construct URL and download kubectl
+          # Construct URL and download kubectl from the stable version (v1.30.3) in https://cdn.dl.k8s.io/release/stable.txt
           DOWNLOAD_URL="https://dl.k8s.io/release/v1.30.3/bin/linux/amd64/kubectl"
           echo "Downloading kubectl from $DOWNLOAD_URL"
 
