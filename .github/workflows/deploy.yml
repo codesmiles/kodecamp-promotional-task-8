@@ -27,9 +27,11 @@ jobs:
           DOWNLOAD_URL="https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl"
           echo "Downloading kubectl from $DOWNLOAD_URL"
 
-          curl -LO "$DOWNLOAD_URL"
+          # Follow the redirect and download the file
+          curl -LO -f -s -S "$DOWNLOAD_URL"
           chmod +x kubectl
           sudo mv kubectl /usr/local/bin/
+
 
       - name: SSH into EC2 and deploy
         run: |
