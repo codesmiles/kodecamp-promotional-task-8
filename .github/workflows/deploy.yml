@@ -20,7 +20,7 @@ jobs:
       - name: Install kubectl
         run: |
           # Fetch Kubernetes version
-          KUBECTL_VERSION=$(curl -s https://dl.k8s.io/release/stable.txt)
+          KUBECTL_VERSION=$(curl -s -L https://dl.k8s.io/release/stable.txt)
           echo "KUBECTL_VERSION=$KUBECTL_VERSION"
 
           # Construct URL and download kubectl
