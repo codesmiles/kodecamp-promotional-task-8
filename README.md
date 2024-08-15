@@ -2,7 +2,7 @@
 
 - Build docker image -> docker build -t promotional-task-8 ./
 - run the dockerfile -> docker run promotional-task-8:latest
--  tag the docker container -> docker tag kodecamppromotionaltask8:latest codesmiles/promotional-task-8:latest
+- tag the docker container -> docker tag kodecamppromotionaltask8:latest codesmiles/promotional-task-8:latest
 - push docker image 
 est
 - docker image name  -> codesmiles/promotional-task-8:latest
@@ -55,16 +55,12 @@ est
 - Step 4: Access the Minikube Cluster
   - SSH into EC2 Instance:
     - SSH into the created EC2 instance using the public IP output from Terraform.
+  ![ssh to ec2 instance](/assets/ssh_to_ec2_instance.png)
     - Configure kubectl:
     - Inside the EC2 instance, configure kubectl to use the Minikube cluster.
+  [Link to the shell configuration](/terraform/module/ec2/shell.sh)
 - Step 5: Automate Deployment with GitHub Actions
   - Update GitHub Actions Workflow:
     - Update the GitHub Actions workflow to deploy to the Minikube cluster on the EC2 instance. Ensure the Minikube instance's IP and SSH keys are securely managed.
   ![Github action deployment](/assets/github_action.png)
   ![AWS instance deployment](/assets/aws_instance.png)
-
-
-## Challenges
-
-- Been having connection timeouts for connecting through ssh  ```sh ssh -i /path/to/your/key.pen username@y_ip``` and through github actions and this error is due to my network connectivity issues
-

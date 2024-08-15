@@ -42,3 +42,32 @@
 #           sudo pm2 stop ./dist/index.js &&
 #           sudo pm2 start ./dist/index.js
 #           "
+
+
+//----------------------------------------------------------------
+ # - name: SSH into EC2 and deploy
+      #   run: |
+      #     ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_PUBLIC_IP }} "
+      #     cd /home/ec2-user &&
+      #     docker build -t kodecamppromotionaltask8 ./ &&
+      #     docker tag kodecamppromotionaltask8 codesmiles/promotional-task-8:latest &&
+      #     docker push codesmiles/promotional-task-8:latest &&
+      #     kubectl apply -f kube/deployment.yaml &&
+      #     kubectl apply -f kube/service.yaml
+      #     "
+
+      # # - name: Set up SSH
+      # #   uses: webfactory/ssh-agent@v0.5.3
+      # #   with:
+      # #     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      # - name: Install kubectl
+      #   run: |
+      #     # Construct URL and download kubectl from the stable version (v1.30.3) in https://cdn.dl.k8s.io/release/stable.txt
+      #     DOWNLOAD_URL="https://dl.k8s.io/release/v1.30.3/bin/linux/amd64/kubectl"
+      #     echo "Downloading kubectl from $DOWNLOAD_URL"
+
+      #     # Follow the redirect and download the file
+      #     curl -LO -f -s -S "$DOWNLOAD_URL"
+      #     chmod +x kubectl
+      #     sudo mv kubectl /usr/local/bin/
