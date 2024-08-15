@@ -2,7 +2,8 @@
 
 - Build docker image -> docker build -t promotional-task-8 ./
 - run the dockerfile -> docker run promotional-task-8:latest
-- push tag the docker container -> docker tag promotional-task-8:latest codesmiles/promotional-task-8:latest
+-  tag the docker container -> docker tag kodecamppromotionaltask8:latest codesmiles/promotional-task-8:latest
+- push docker image 
 est
 - docker image name  -> codesmiles/promotional-task-8:latest
 - docker hub link -> https://hub.docker.com/repository/docker/codesmiles/promotional-task-8/general
@@ -12,14 +13,14 @@ est
 ### requirements
 
 - install minikube (see <https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download>)
-- install kubernet (see <https://kubernetes.io/docs/tasks/tools/>)
+- install kubernetes (see <https://kubernetes.io/docs/tasks/tools/>)
 - start minikube -> minikube start or minikube start nodes 4 -p sandbox
 - change directory to the kube folder -> cd kube
 - apply the kubernetes deployment -> kubectl apply -f kube-deployment.yaml
 - geting he pods to show you list of pods created -> kubectl get pods
 - get minikube profiles ->  minikube profile list 
 - deploy kube service -> kubectl apply -f kube-service.yaml
-- get kubeservice -> kuberctl get service
+- get kubeservice -> kubectl get service
 
 ## Steps
 
