@@ -1,35 +1,13 @@
-variable "ami" {
-    type = string
-    default = ""
-    description = ""
-}
-variable "instance_type" {
-    type = string
-    default = "t2.medium"
-    description = ""
-}
 
-variable "subnet_id" {
-    type = string
-    default = ""
-    description = ""
-}
+variable "ec2_var" {
+  description = "a list of maps defining the ec2 configuration"
+  type = object({
+    ami            = string
+    vpc_id         = string
+    key_name       = string
+    subnet_id      = string
+    instance_type  = string
+    security_group = string
+  })
 
-variable "key_name" {
-    type = string
-    default = ""
-    description = ""
-}
-
-variable "vpc_id" {
-    type = string
-    default = ""
-    description = ""
-  
-}
-variable "security_group" {
-    type = string
-    default = ""
-    description = ""
-  
 }

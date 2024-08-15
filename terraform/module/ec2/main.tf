@@ -3,10 +3,10 @@ provider "aws" {
 }
 
 resource "aws_instance" "minikube" {
-  ami           = var.ami
-  instance_type = var.instance_type
-  subnet_id     = var.subnet_id
-  key_name      = var.key_name
+  ami           = var.ec2_var.ami
+  instance_type = var.ec2_var.instance_type
+  subnet_id     = var.ec2_var.subnet_id
+  key_name      = var.ec2_var.key_name
 
   tags = {
     Name = "minikube-ec2"
@@ -18,7 +18,7 @@ resource "aws_instance" "minikube" {
 }
 
 resource "aws_security_group" "minikube_sg" {
-  vpc_id = var.vpc_id
+  vpc_id = var.ec2_var.vpc_id
 
   tags = {
     Name = "minikube_sg"
