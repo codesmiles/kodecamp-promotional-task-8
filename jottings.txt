@@ -1,41 +1,44 @@
-# name: Deploy to Minikube on EC2
+# name: Deploy
 
 # on:
 #   push:
-#     branches:
+#      branches:
 #       - main
 
 # jobs:
 #   deploy:
+#     name: Deploy to EC2
 #     runs-on: ubuntu-latest
+#     env:
+#       EC2_SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+#       EC2_URL: ${{ secrets.SSH_HOST }}
+#       EC2_USERNAME: ${{ secrets.USER_NAME }}
 #     steps:
 #       - name: Checkout code
 #         uses: actions/checkout@v2
 
-#       - name: Set up SSH
-#         uses: webfactory/ssh-agent@v0.5.3
+#       - name: Setup SSH for EC2
+#         uses: omarhosny206/setup-ssh-for-ec2@v1.0.0
 #         with:
-#           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+#           EC2_SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+#           EC2_URL: ${{ secrets.SSH_HOST }}
 
-#       - name: Install kubectl
+#       - name: Debug SSH Setup
 #         run: |
-#           # Construct URL and download kubectl from the stable version (v1.30.3) in https://cdn.dl.k8s.io/release/stable.txt
-#           DOWNLOAD_URL="https://dl.k8s.io/release/v1.30.3/bin/linux/amd64/kubectl"
-#           echo "Downloading kubectl from $DOWNLOAD_URL"
+#           echo "Checking SSH setup..."
+#           ls -la ~/.ssh
+#           cat ~/.ssh/id_rsa
 
-#           # Follow the redirect and download the file
-#           curl -LO -f -s -S "$DOWNLOAD_URL"
-#           chmod +x kubectl
-#           sudo mv kubectl /usr/local/bin/
-
-
-#       - name: SSH into EC2 and deploy
+#       - name: Build & Deploy
 #         run: |
-#           ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_PUBLIC_IP }} "
-#           cd /home/ec2-user &&
-#           docker build -t promotional-task-8 ./ &&
-#           docker tag promotional-task-8:latest codesmiles/promotional-task-8:latest &&
-#           docker push codesmiles/promotional-task-8:latest &&
-#           kubectl apply -f kube/deployment.yaml &&
-#           kubectl apply -f kube/service.yaml
+#           ssh -o StrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.SSH_HOST }} "
+#           cd /home/ubuntu/<PROJECT_DIRECTORY> &&
+#           git checkout dev &&
+#           git fetch --all &&
+#           git reset --hard origin/dev &&
+#           git pull origin dev &&
+#           sudo npm i &&
+#           sudo npm run build &&
+#           sudo pm2 stop ./dist/index.js &&
+#           sudo pm2 start ./dist/index.js
 #           "

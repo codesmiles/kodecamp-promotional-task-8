@@ -8,31 +8,30 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      EC2_SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-      EC2_URL: ${{ secrets.EC2_PUBLIC_IP }}
-      EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup SSH for EC2
-        uses: omarhosny206/setup-ssh-for-ec2@v1.0.0
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
         with:
-          EC2_SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-          EC2_URL: ${{ secrets.EC2_PUBLIC_IP }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Install kubectl
         run: |
+          # Construct URL and download kubectl from the stable version (v1.30.3) in https://cdn.dl.k8s.io/release/stable.txt
           DOWNLOAD_URL="https://dl.k8s.io/release/v1.30.3/bin/linux/amd64/kubectl"
           echo "Downloading kubectl from $DOWNLOAD_URL"
+
+          # Follow the redirect and download the file
           curl -LO -f -s -S "$DOWNLOAD_URL"
           chmod +x kubectl
           sudo mv kubectl /usr/local/bin/
 
+
       - name: SSH into EC2 and deploy
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_PUBLIC_IP }} "
+          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_PUBLIC_IP }} "
           cd /home/ec2-user &&
           docker build -t promotional-task-8 ./ &&
           docker tag promotional-task-8:latest codesmiles/promotional-task-8:latest &&
