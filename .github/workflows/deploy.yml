@@ -33,8 +33,8 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_PUBLIC_IP }} "
           cd /home/ec2-user &&
-          docker build -t promotional-task-8 ./ &&
-          docker tag promotional-task-8:latest codesmiles/promotional-task-8:latest &&
+          docker build -t kodecamppromotionaltask8 ./ &&
+          docker tag kodecamppromotionaltask8 codesmiles/promotional-task-8:latest &&
           docker push codesmiles/promotional-task-8:latest &&
           kubectl apply -f kube/deployment.yaml &&
           kubectl apply -f kube/service.yaml
