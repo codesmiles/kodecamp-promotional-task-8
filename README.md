@@ -29,7 +29,7 @@ kodecamp-promotional-task-8/
 |   │       └── variables.tf
 |   ├── main.tf
 |   ├── outputs.tf
-|   ├── variables.tf
+|   └── variables.tf
 ├── .dockerignore
 ├── .gitignore
 ├── docker-compose.debug.yml
