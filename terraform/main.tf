@@ -12,6 +12,7 @@ module "vpc" {
   vpc_cidr          = "10.0.0.0/16"
   vpc_name          = "promotional_task_8"
   availability_zone = "eu-west-1a"
+
 }
 
 module "ec2" {
