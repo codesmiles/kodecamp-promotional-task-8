@@ -9,5 +9,4 @@ variable "ec2_var" {
     instance_type  = string
     security_group = string
   })
-
 }
