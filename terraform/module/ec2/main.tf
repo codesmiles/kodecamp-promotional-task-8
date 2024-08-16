@@ -2,6 +2,7 @@ provider "aws" {
   region = "eu-west-1"
 }
 
+# set up minikube aws provider
 resource "aws_instance" "minikube" {
   ami           = var.ec2_var.ami
   instance_type = var.ec2_var.instance_type
@@ -17,8 +18,9 @@ resource "aws_instance" "minikube" {
   user_data = file("${path.module}/shell.sh")
 }
 
+# set up security group
 resource "aws_security_group" "minikube_sg" {
-  vpc_id = var.ec2_var.vpc_id
+  vpc_id = var.ec2_var.vpc_id 
 
   tags = {
     Name = "minikube_sg"

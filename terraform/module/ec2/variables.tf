@@ -7,6 +7,5 @@ variable "ec2_var" {
     key_name       = string
     subnet_id      = string
     instance_type  = string
-    security_group = string
   })
 }
