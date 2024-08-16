@@ -1,16 +1,58 @@
 # Kodecamp Promotional Task 8
 
+## Structure
+
+```md
+kodecamp-promotional-task-8/
+├── .github/
+|    ├── workflows/
+|        └──deploy.yml
+├── .vscode/
+|    ├── launch.json
+|    └── tasks.json
+├── app/
+|   └── Welcome.py
+├── assets/
+├── kube/
+|   ├── kube-deployment.yaml
+|   └── kube-service.yaml
+├── terraform/
+|   ├── module/
+|   │   ├── ec2/
+|   │   │   ├── main.tf
+|   |   |   ├── shell.sh
+|   |   |   ├── outputs.tf
+|   │   │   └── variables.tf
+|   │   └── vpc/
+|   │       ├── main.tf
+|   |       ├── outputs.tf
+|   │       └── variables.tf
+|   ├── main.tf
+|   ├── outputs.tf
+|   ├── variables.tf
+├── .dockerignore
+├── .gitignore
+├── docker-compose.debug.yml
+├── docker-compose.yml
+├── Dockerfile
+├── question.md
+├── README.md
+└── requirements.txt
+```
+
+### requirements
+
+#### Docker
+
 - Build docker image -> docker build -t promotional-task-8 ./
 - run the dockerfile -> docker run promotional-task-8:latest
 - tag the docker container -> docker tag kodecamppromotionaltask8:latest codesmiles/promotional-task-8:latest
-- push docker image 
+- push docker image
 est
 - docker image name  -> codesmiles/promotional-task-8:latest
-- docker hub link -> https://hub.docker.com/repository/docker/codesmiles/promotional-task-8/general
+- docker hub link -> <https://hub.docker.com/repository/docker/codesmiles/promotional-task-8/general>
 
-## Deploy the app to your minikube cluster
-
-### requirements
+#### Deploy the app to your minikube cluster
 
 - install minikube (see <https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download>)
 - install kubernetes (see <https://kubernetes.io/docs/tasks/tools/>)
@@ -62,5 +104,5 @@ est
 - Step 5: Automate Deployment with GitHub Actions
   - Update GitHub Actions Workflow:
     - Update the GitHub Actions workflow to deploy to the Minikube cluster on the EC2 instance. Ensure the Minikube instance's IP and SSH keys are securely managed.
-  ![Github action deployment](/assets/github_action.png)
+  ![Github action deployment](/assets/github-action.png)
   ![AWS instance deployment](/assets/aws_instance.png)
