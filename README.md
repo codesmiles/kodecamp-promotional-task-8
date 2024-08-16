@@ -5,8 +5,8 @@
 ```md
 kodecamp-promotional-task-8/
 ├── .github/
-|    ├── workflows/
-|        └──deploy.yml
+|    └── workflows/
+|        └── deploy.yml
 ├── .vscode/
 |    ├── launch.json
 |    └── tasks.json
